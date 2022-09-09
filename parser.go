@@ -3,6 +3,7 @@ package jsonfeed
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io"
 )
 
@@ -15,6 +16,9 @@ func FromString(jsonStr string) (feed *Feed, err error) {
 
 func FromBytes(jsonBytes []byte) (feed *Feed, err error) {
 	err = json.Unmarshal(jsonBytes, &feed)
+	if err == nil && (feed == nil || feed.IsEmpty()) {
+		err = fmt.Errorf("unmarshalling ok, but Feed object is nil or empty, check the json for valid jsonfeed data")
+	}
 	return
 }
 
