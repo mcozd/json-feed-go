@@ -14,7 +14,7 @@ func FromString(jsonStr string) (feed *Feed, err error) {
 }
 
 func FromBytes(jsonBytes []byte) (feed *Feed, err error) {
-	json.Unmarshal(jsonBytes, &feed)
+	err = json.Unmarshal(jsonBytes, &feed)
 	return
 }
 
