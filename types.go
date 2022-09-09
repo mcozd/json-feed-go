@@ -37,6 +37,23 @@ type Feed struct {
 	Items       []Item   `json:"items"`
 }
 
+func (f Feed) IsEmpty() bool {
+	return f.Authors == nil &&
+		f.Hubs == nil &&
+		f.Items == nil &&
+		f.HomePageUrl == nil &&
+		f.FeedUrl == nil &&
+		f.Description == nil &&
+		f.UserComment == nil &&
+		f.NextUrl == nil &&
+		f.Icon == nil &&
+		f.Favicon == nil &&
+		f.Language == nil &&
+		f.Expired == nil &&
+		len(f.Version) == 0 &&
+		len(f.Title) == 0
+}
+
 func (f Feed) IsValid() bool {
 	return validStr(&f.Title) && validStr(&f.Version) &&
 		f.Version == CurrentVersion &&
