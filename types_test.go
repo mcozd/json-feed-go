@@ -6,38 +6,34 @@ import (
 	jsonfeed "github.com/mcozd/json-feed-go"
 )
 
-func strptr(in string) *string {
-	return &in
-}
-
 var validAuthors = []jsonfeed.Author{
-	{Name: strptr("Name")},
-	{Url: strptr("https://")},
-	{Avatar: strptr("https://www.gravatar")},
+	{Name: jsonfeed.Ptr("Name")},
+	{Url: jsonfeed.Ptr("https://")},
+	{Avatar: jsonfeed.Ptr("https://www.gravatar")},
 	{
-		Name: strptr("Name"),
-		Url:  strptr("https://"),
+		Name: jsonfeed.Ptr("Name"),
+		Url:  jsonfeed.Ptr("https://"),
 	},
 	{
-		Name:   strptr("Name"),
-		Url:    strptr("https://"),
-		Avatar: strptr("https://www.gravatar"),
+		Name:   jsonfeed.Ptr("Name"),
+		Url:    jsonfeed.Ptr("https://"),
+		Avatar: jsonfeed.Ptr("https://www.gravatar"),
 	},
 }
 
 var invalidAuthors = []jsonfeed.Author{
 	{},
-	{Name: strptr("")},
-	{Url: strptr("")},
-	{Avatar: strptr("")},
+	{Name: jsonfeed.Ptr("")},
+	{Url: jsonfeed.Ptr("")},
+	{Avatar: jsonfeed.Ptr("")},
 	{
-		Name: strptr(""),
-		Url:  strptr(""),
+		Name: jsonfeed.Ptr(""),
+		Url:  jsonfeed.Ptr(""),
 	},
 	{
-		Name:   strptr(""),
-		Url:    strptr(""),
-		Avatar: strptr(""),
+		Name:   jsonfeed.Ptr(""),
+		Url:    jsonfeed.Ptr(""),
+		Avatar: jsonfeed.Ptr(""),
 	},
 }
 
@@ -108,33 +104,33 @@ func TestValidAttachment(t *testing.T) {
 }
 
 var validItems = []jsonfeed.Item{
-	{Id: "1", ContentHtml: strptr("<p>content</p><p>more content</p>"), ContentText: strptr("Text without html formating.\n But with other formatting.")},
-	{Id: "2", ContentHtml: strptr("<p>content</p><p>more content</p>")},
-	{Id: "3", ContentText: strptr(`{ "data": "some data", "meta": "structured data can also be included in this field" }`)},
-	{Id: "4", ContentText: strptr("content"), Attachments: nil},
-	{Id: "5", ContentText: strptr("content"), Authors: nil},
+	{Id: "1", ContentHtml: jsonfeed.Ptr("<p>content</p><p>more content</p>"), ContentText: jsonfeed.Ptr("Text without html formating.\n But with other formatting.")},
+	{Id: "2", ContentHtml: jsonfeed.Ptr("<p>content</p><p>more content</p>")},
+	{Id: "3", ContentText: jsonfeed.Ptr(`{ "data": "some data", "meta": "structured data can also be included in this field" }`)},
+	{Id: "4", ContentText: jsonfeed.Ptr("content"), Attachments: nil},
+	{Id: "5", ContentText: jsonfeed.Ptr("content"), Authors: nil},
 }
 
 var invalidItems = []jsonfeed.Item{
 	{},
 	{Id: "1"},
-	{Id: "2", ContentHtml: strptr("")},
-	{Id: "3", ContentText: strptr("")},
-	{Id: "4", ContentHtml: strptr(""), ContentText: strptr("")},
-	{Id: "", ContentHtml: strptr("<span>content</span>")},
-	{Id: "", ContentText: strptr("content")},
-	{Id: "", ContentHtml: strptr("<span>content</span>"), ContentText: strptr("content")},
+	{Id: "2", ContentHtml: jsonfeed.Ptr("")},
+	{Id: "3", ContentText: jsonfeed.Ptr("")},
+	{Id: "4", ContentHtml: jsonfeed.Ptr(""), ContentText: jsonfeed.Ptr("")},
+	{Id: "", ContentHtml: jsonfeed.Ptr("<span>content</span>")},
+	{Id: "", ContentText: jsonfeed.Ptr("content")},
+	{Id: "", ContentHtml: jsonfeed.Ptr("<span>content</span>"), ContentText: jsonfeed.Ptr("content")},
 }
 
 var itemsWithInvalidAuthors = []jsonfeed.Item{
-	{Id: "1", ContentText: strptr("content"), Authors: []jsonfeed.Author{}},
-	{Id: "2", ContentText: strptr("content"), Authors: []jsonfeed.Author{{}}},
+	{Id: "1", ContentText: jsonfeed.Ptr("content"), Authors: []jsonfeed.Author{}},
+	{Id: "2", ContentText: jsonfeed.Ptr("content"), Authors: []jsonfeed.Author{{}}},
 }
 
 var itemsWithInvalidAttachments = []jsonfeed.Item{
-	{Id: "1", ContentText: strptr("content"), Attachments: []jsonfeed.Attachment{}},
-	{Id: "2", ContentText: strptr("content"), Attachments: []jsonfeed.Attachment{{}}},
-	{Id: "3", ContentText: strptr("content"), Attachments: []jsonfeed.Attachment{{Url: "https://"}}},
+	{Id: "1", ContentText: jsonfeed.Ptr("content"), Attachments: []jsonfeed.Attachment{}},
+	{Id: "2", ContentText: jsonfeed.Ptr("content"), Attachments: []jsonfeed.Attachment{{}}},
+	{Id: "3", ContentText: jsonfeed.Ptr("content"), Attachments: []jsonfeed.Attachment{{Url: "https://"}}},
 }
 
 func TestValidItem(t *testing.T) {
