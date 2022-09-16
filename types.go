@@ -32,9 +32,9 @@ type Feed struct {
 	Favicon     *string  `json:"favicon"`
 	Language    *string  `json:"language"`
 	Expired     *bool    `json:"expired"`
-	Authors     []Author `json:"authors"`
-	Hubs        []Hub    `json:"hubs"`
-	Items       []Item   `json:"items"`
+	Authors     []Author `json:"authors,omitempty"`
+	Hubs        []Hub    `json:"hubs,omitempty"`
+	Items       []Item   `json:"items,omitempty"`
 }
 
 func (f Feed) IsEmpty() bool {
@@ -126,9 +126,9 @@ type Item struct {
 	DatePublished *time.Time   `json:"date_published"`
 	DateModified  *time.Time   `json:"date_modified"`
 	Language      *string      `json:"language"`
-	Authors       []Author     `json:"authors"`
-	Tags          []string     `json:"tags"`
-	Attachments   []Attachment `json:"attachments"`
+	Authors       []Author     `json:"authors,omitempty"`
+	Tags          []string     `json:"tags,omitempty"`
+	Attachments   []Attachment `json:"attachments,omitempty"`
 }
 
 func (i *Item) isValid() bool {
