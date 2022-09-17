@@ -76,12 +76,12 @@ type ExtendedItem struct {
 
 type FeedWithExtendedItems struct {
 	jsonfeed.Feed
-	Items []ExtendedItem
+	Items []ExtendedItem `json:"items,omitempty"`
 }
 
 type ExtendedFeedWithExtendedItems struct {
 	ExtendedFeed
-	Items []ExtendedItem
+	Items []ExtendedItem `json:"items,omitempty"`
 }
 
 func TestFromString(t *testing.T) {
