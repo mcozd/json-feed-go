@@ -32,30 +32,30 @@ var validJsonWithFeedAndItemExtensions = `{
     "title": "My Example Feed",
     "home_page_url": "https://example.org/",
     "feed_url": "https://example.org/feed.json",
-	"extra1": "test",
-	"extra2": 123,
+	"_extra1": "test",
+	"_extra2": 123,
     "items": [
         {
             "id": "2",
             "content_text": "This is a second item.",
-            "url": "https://example.org/second-item"
-            "lead": "Other Person"
-            "stars": 567,
-            "likes": 1234
+            "url": "https://example.org/second-item",
+            "_lead": "Other Person",
+            "_stars": 567,
+            "_likes": 1234
         },
         {
             "id": "1",
             "content_html": "<p>Hello, world!</p>",
-            "url": "https://example.org/initial-post"
-            "lead": "Some Person",
-            "stars": 1
+            "url": "https://example.org/initial-post",
+            "_lead": "Some Person",
+            "_stars": 1
         }
     ]
 }`
 
 type FeedExtensions struct {
-	Extra1 *string `json:"extra1"`
-	Extra2 *int    `json:"extra2"`
+	Extra1 *string `json:"_extra1"`
+	Extra2 *int    `json:"_extra2"`
 }
 
 type ExtendedFeed struct {
@@ -64,9 +64,9 @@ type ExtendedFeed struct {
 }
 
 type ItemExtensions struct {
-	Lead  *string `json:"lead"`
-	Stars *int    `json:"stars"`
-	Likes *int    `json:"likes"`
+	Lead  *string `json:"_lead"`
+	Stars *int    `json:"_stars"`
+	Likes *int    `json:"_likes"`
 }
 
 type ExtendedItem struct {
