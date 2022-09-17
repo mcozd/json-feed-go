@@ -1,6 +1,7 @@
 package jsonfeed_test
 
 import (
+	"reflect"
 	"testing"
 
 	jsonfeed "github.com/mcozd/json-feed-go"
@@ -122,10 +123,10 @@ func TestUnmarshalFromString(t *testing.T) {
 
 		wantedItem1 := ItemExtensions{Lead: jsonfeed.Ptr("Other Person"), Stars: jsonfeed.Ptr(567), Likes: jsonfeed.Ptr(1234)}
 		wantedItem2 := ItemExtensions{Lead: jsonfeed.Ptr("Some Person"), Stars: jsonfeed.Ptr(1), Likes: nil}
-		if feed.Items[0].ItemExtensions != wantedItem1 {
+		if !reflect.DeepEqual(feed.Items[0].ItemExtensions, wantedItem1) {
 			t.FailNow()
 		}
-		if feed.Items[1].ItemExtensions != wantedItem2 {
+		if !reflect.DeepEqual(feed.Items[1].ItemExtensions, wantedItem2) {
 			t.FailNow()
 		}
 	})
@@ -142,10 +143,10 @@ func TestUnmarshalFromString(t *testing.T) {
 
 		wantedItem1 := ItemExtensions{Lead: jsonfeed.Ptr("Other Person"), Stars: jsonfeed.Ptr(567), Likes: jsonfeed.Ptr(1234)}
 		wantedItem2 := ItemExtensions{Lead: jsonfeed.Ptr("Some Person"), Stars: jsonfeed.Ptr(1), Likes: nil}
-		if feed.Items[0].ItemExtensions != wantedItem1 {
+		if !reflect.DeepEqual(feed.Items[0].ItemExtensions, wantedItem1) {
 			t.FailNow()
 		}
-		if feed.Items[1].ItemExtensions != wantedItem2 {
+		if !reflect.DeepEqual(feed.Items[1].ItemExtensions, wantedItem2) {
 			t.FailNow()
 		}
 	})
