@@ -4,10 +4,6 @@ import "time"
 
 const CurrentVersion string = "https://jsonfeed.org/version/1.1"
 
-func validStr(str *string) bool {
-	return str != nil && len(*str) > 0
-}
-
 func hasValidAuthors(authors []Author) bool {
 	if authors == nil {
 		return true
