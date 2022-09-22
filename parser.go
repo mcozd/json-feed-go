@@ -26,6 +26,9 @@ func FromString[F FeedConstraint](jsonStr string) (feed *F, err error) {
 }
 
 func FromReader[F FeedConstraint](reader io.Reader) (feed *F, err error) {
+	if reader == nil {
+		return nil, fmt.Errorf("reader was nil")
+	}
 	jsonBytes, err := io.ReadAll(reader)
 	if err != nil {
 		return nil, err
