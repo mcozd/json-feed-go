@@ -31,14 +31,14 @@ func TestStandardFeeds(t *testing.T) {
 	t.Parallel()
 	t.Run("Should return an error on invalid json", func(t *testing.T) {
 		for _, invalidJson := range invalidJsons {
-			_, err := jsonfeed.FromString(invalidJson)
+			_, err := jsonfeed.FromString[jsonfeed.Feed](invalidJson)
 			if err == nil {
 				t.FailNow()
 			}
 		}
 	})
 	t.Run("Should return a filled feed object", func(t *testing.T) {
-		feed, err := jsonfeed.FromString(validJson)
+		feed, err := jsonfeed.FromString[jsonfeed.Feed](validJson)
 		if feed == nil || err != nil {
 			t.FailNow()
 		}
